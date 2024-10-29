@@ -47,7 +47,7 @@ jobs:
     displayName: 'Publish Test Results'
     inputs:
       testRunTitle: DNP Assembly Info Test Results
-  - task: PublishCodeCoverageResults@1
+  - task: PublishCodeCoverageResults@2
     displayName: 'Publish Code Coverage'
     inputs:
       codeCoverageTool: Cobertura
@@ -103,7 +103,7 @@ jobs:
         netframework/package.json
         netframework/package-lock.json
         netframework/tsconfig.json
-  - task: replacetokens@4
+  - task: replacetokens@6
     displayName: 'Replace Tokens for Production'
     inputs:
       rootDirectory: $(Build.SourcesDirectory)/src
@@ -116,11 +116,11 @@ jobs:
         **/netframework/index.js
         **/netframework/services/telemetry.service.js
       variableFiles: $(Build.SourcesDirectory)/pipelines/production-vars.json
-  - task: TfxInstaller@3
+  - task: TfxInstaller@5
     displayName: 'Use Node CLI for Azure DevOps (tfx-cli): v0.6.x'
     inputs:
       version: v0.6.x
-  - task: PackageAzureDevOpsExtension@3
+  - task: PackageAzureDevOpsExtension@5
     displayName: 'Package Extension'
     inputs:
       rootFolder: '$(Build.SourcesDirectory)/src'
@@ -176,7 +176,7 @@ jobs:
         netframework/package.json
         netframework/package-lock.json
         netframework/tsconfig.json
-  - task: replacetokens@4
+  - task: replacetokens@6
     displayName: 'Replace Tokens for Test'
     inputs:
       rootDirectory: $(Build.SourcesDirectory)/src
@@ -189,11 +189,11 @@ jobs:
         **/netframework/index.js
         **/netframework/services/telemetry.service.js
       variableFiles: $(Build.SourcesDirectory)/pipelines/test-vars.json
-  - task: TfxInstaller@3
+  - task: TfxInstaller@5
     displayName: 'Use Node CLI for Azure DevOps (tfx-cli): v0.6.x'
     inputs:
       version: v0.6.x
-  - task: PackageAzureDevOpsExtension@3
+  - task: PackageAzureDevOpsExtension@5
     displayName: 'Package Extension'
     inputs:
       rootFolder: '$(Build.SourcesDirectory)/src'
