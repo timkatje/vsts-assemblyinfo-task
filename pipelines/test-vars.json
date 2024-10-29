@@ -1,12 +1,12 @@
 {
-    "ExtensionId": "Assembly-Info-Task-Test",
-    "ExtensionName": "Assembly Info (Test)",
-    "NetFrameworkInstrumentationKey": "cab1664a-db78-4058-b55c-3db8d219e616",
-    "NetFrameworkTaskId": "F6C609D1-94DE-4FA6-B9E9-F146161EC47A",
-    "NetFrameworkTaskName": "Assembly-Info-NetFramework-Test",
-    "NetFrameworkTaskFriendlyName": "Assembly Info (.Net Framework) - TEST",
-    "NetCoreInstrumentationKey": "69b9ebe1-c97f-4832-ab47-e33832d1e8b9",
-    "NetCoreTaskId": "9E9CFB95-62DC-4A63-BC66-FB8F57AF76FF",
-    "NetCoreTaskName": "Assembly-Info-NetCore-Test",
-    "NetCoreTaskFriendlyName": "Assembly Info (.Net Core & .Net Standard) - TEST"
+    "ExtensionId": "DNP-Assembly-Info-Task-Test",
+    "ExtensionName": "DNP Assembly Info (Test)",
+    "NetFrameworkInstrumentationKey": "00000000-0000-0000-0000-000000000000",
+    "NetFrameworkTaskId": "ee1f9b1e-3fcc-4f12-b534-a10b003f8610",
+    "NetFrameworkTaskName": "DNP-Assembly-Info-NetFramework-Test",
+    "NetFrameworkTaskFriendlyName": "DNP Assembly Info (.NET Framework) - TEST",
+    "NetCoreInstrumentationKey": "00000000-0000-0000-0000-000000000000",
+    "NetCoreTaskId": "56a89c93-59da-4e91-9368-0ffe1d1e1067",
+    "NetCoreTaskName": "DNP-Assembly-Info-NetCore-Test",
+    "NetCoreTaskFriendlyName": "DNP Assembly Info (.NET Core/Std) - TEST"
 }

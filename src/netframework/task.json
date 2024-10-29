@@ -4,9 +4,9 @@
   "name": "#{NetFrameworkTaskName}#",
   "friendlyName": "#{NetFrameworkTaskFriendlyName}#",
   "description": "Set assembly information such as Version, Copyright and Trademark etc.",
-  "helpMarkDown": "[More Information](https://marketplace.visualstudio.com/items?itemName=bleddynrichards.Assembly-Info-Task)",
+  "helpMarkDown": "[More Information](https://marketplace.visualstudio.com/items?itemName=dnpimagingcommamerica.DNP-Assembly-Info-Task)",
   "category": "Build",
-  "author": "Bleddyn Richards",
+  "author": "Tim Katje",
   "version": {
     "Major": 1,
     "Minor": 0,

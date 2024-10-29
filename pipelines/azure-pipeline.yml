@@ -4,7 +4,7 @@ trigger:
     - refs/heads/master
   batch: True
 
-name: 'AssemblyInfo-Extension_$(date:yyyy).$(date:MM).$(date:dd)$(rev:.r)'
+name: 'DNP-AssemblyInfo-Extension_$(date:yyyy).$(date:MM).$(date:dd)$(rev:.r)'
 
 pool:
   name: Azure Pipelines
@@ -17,17 +17,17 @@ resources:
     ref: master
 
 variables:
-  buildConfiguration: 'release'
-  buildPlatform: 'any cpu'
-  ExtensionVersion: '3.2.0'
-  PublisherId: 'bleddynrichards'
+  buildConfiguration: release
+  buildPlatform: any cpu
+  ExtensionVersion: 1.0.0 #'3.2.0'
+  PublisherId: dnpimagingcommamerica
 
 jobs:
 - job: Job_1
   displayName: 'Run Tests'
   cancelTimeoutInMinutes: 1
   pool:
-    vmImage: ubuntu-20.04
+    vmImage: ubuntu-latest
   steps:
   - checkout: self
   - task: Npm@1
@@ -46,7 +46,7 @@ jobs:
   - task: PublishTestResults@2
     displayName: 'Publish Test Results'
     inputs:
-      testRunTitle: Assembly Info Test Results
+      testRunTitle: DNP Assembly Info Test Results
   - task: PublishCodeCoverageResults@1
     displayName: 'Publish Code Coverage'
     inputs:
@@ -81,7 +81,7 @@ jobs:
   cancelTimeoutInMinutes: 1
   dependsOn: Job_1
   pool:
-    vmImage: ubuntu-20.04
+    vmImage: ubuntu-latest
   steps:
   - checkout: self
   - task: Npm@1
@@ -128,12 +128,12 @@ jobs:
       outputPath: '$(Build.ArtifactStagingDirectory)/packages/Assembly-Info-$(ExtensionVersion).vsix'
       outputVariable: Extension.OutputPathProduction
       publisherId: '$(PublisherId)'
-      extensionId: 'Assembly-Info-Task'
-      extensionName: 'Assembly Info'
+      extensionId: 'DNP-Assembly-Info-Task'
+      extensionName: 'DNP Assembly Info'
       extensionVersion: '$(ExtensionVersion)'
       updateTasksVersion: true
-      extensionVisibility: public
-      extensionPricing: free  
+      extensionVisibility: private
+      extensionPricing: free
   - task: ArchiveFiles@2
     displayName: 'Archive Extension'
     inputs:
@@ -154,7 +154,7 @@ jobs:
   cancelTimeoutInMinutes: 1
   dependsOn: Job_2
   pool:
-    vmImage: ubuntu-20.04
+    vmImage: ubuntu-latest
   steps:
   - checkout: self
   - task: Npm@1
@@ -201,8 +201,8 @@ jobs:
       outputPath: '$(Build.ArtifactStagingDirectory)/packages/Assembly-Info-$(ExtensionVersion)-private.vsix'
       outputVariable: Extension.OutputPathTest
       publisherId: '$(PublisherId)'
-      extensionId: 'Assembly-Info-Task-Test'
-      extensionName: 'Assembly Info (Test)'
+      extensionId: 'DNP-Assembly-Info-Task-Test'
+      extensionName: 'DNP Assembly Info (Test)'
       extensionVersion: '$(ExtensionVersion)'
       updateTasksVersion: true
       extensionVisibility: private
@@ -229,10 +229,10 @@ jobs:
   - Job_2
   - Job_3
   pool:
-    vmImage: ubuntu-20.04
+    vmImage: ubuntu-latest
   steps:
   - checkout: self
-  - task: Assembly-Info-NetCore@3
+  - task: DNP-Assembly-Info-NetCore@1
     displayName: Set Assembly Manifest Data
     inputs:
       UpdateBuildNumber: $(Build.DefinitionName)_v$(ExtensionVersion)
