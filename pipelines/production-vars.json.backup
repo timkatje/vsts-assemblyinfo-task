@@ -1,12 +1,12 @@
 {
     "ExtensionId": "DNP-Assembly-Info-Task",
     "ExtensionName": "DNP Assembly Info",
-    "NetFrameworkInstrumentationKey": "00000000-0000-0000-0000-000000000000",
-    "NetFrameworkTaskId": "e1144f21-8b57-478c-bca3-36b38da4d767",
+    "NetFrameworkInstrumentationKey": "14430f00-2e5d-45dd-9538-34c96373448f",
+    "NetFrameworkTaskId": "3EDC451E-360C-40E5-A221-A42D5C987AB8",
     "NetFrameworkTaskName": "DNP-Assembly-Info-NetFramework",
     "NetFrameworkTaskFriendlyName": "DNP Assembly Info (.NET Framework)",
-    "NetCoreInstrumentationKey": "00000000-0000-0000-0000-000000000000",
-    "NetCoreTaskId": "e5ac2ea8-63f5-4c7d-9016-f3a11708f6ef",
+    "NetCoreInstrumentationKey": "e06d7d33-348e-46d8-93d3-375f08b9e381",
+    "NetCoreTaskId": "F15DC48C-4351-4C96-927C-729360A3164B",
     "NetCoreTaskName": "DNP-Assembly-Info-NetCore",
     "NetCoreTaskFriendlyName": "DNP Assembly Info (.NET Core/Std)"
 }
