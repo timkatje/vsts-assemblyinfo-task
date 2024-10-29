@@ -19,7 +19,7 @@ resources:
 variables:
   buildConfiguration: release
   buildPlatform: any cpu
-  ExtensionVersion: 1.0.0 #'3.2.0'
+  ExtensionVersion: 2.0.0 #'3.2.0' --> 4.0.0 for 16, 4.1.0 for 20
   PublisherId: dnpimagingcommamerica
 
 jobs:
@@ -60,7 +60,7 @@ jobs:
       includeRootFolder: false
       sevenZipCompression: 5
       archiveFile: $(Build.ArtifactStagingDirectory)/AssemblyInfo - Source.zip
-  - task: PublishBuildArtifacts@1
+  - task: PublishBuildArtifacts@1 #REFACTOR: MS recommends using PublishPipelineArtifact@1
     displayName: 'Publish Source'
     inputs:
       PathtoPublish: $(Build.ArtifactStagingDirectory)/AssemblyInfo - Source.zip
@@ -71,7 +71,7 @@ jobs:
       rootFolderOrFile: '$(Agent.BuildDirectory)'
       includeRootFolder: false
       archiveFile: '$(Build.ArtifactStagingDirectory)/AssemblyInfo - Build Directory.zip'
-  - task: PublishBuildArtifacts@1
+  - task: PublishBuildArtifacts@1 #REFACTOR: MS recommends using PublishPipelineArtifact@1
     displayName: 'Publish Build Directory'
     inputs:
       PathtoPublish: '$(Build.ArtifactStagingDirectory)/AssemblyInfo - Build Directory.zip'
@@ -140,11 +140,11 @@ jobs:
       rootFolderOrFile: $(Build.SourcesDirectory)/src
       includeRootFolder: false
       archiveFile: $(Build.ArtifactStagingDirectory)/AssemblyInfo - Extension Build - Production.zip
-  - task: PublishBuildArtifacts@1
+  - task: PublishBuildArtifacts@1 #REFACTOR: MS recommends using PublishPipelineArtifact@1
     displayName: 'Publish Extension Build'
     inputs:
       PathtoPublish: $(Build.ArtifactStagingDirectory)/AssemblyInfo - Extension Build - Production.zip
-  - task: PublishBuildArtifacts@1
+  - task: PublishBuildArtifacts@1 #REFACTOR: MS recommends using PublishPipelineArtifact@1
     displayName: 'Publish Extension'
     inputs:
       PathtoPublish: $(Build.ArtifactStagingDirectory)/packages/Assembly-Info-$(ExtensionVersion).vsix
@@ -213,27 +213,27 @@ jobs:
       rootFolderOrFile: $(Build.SourcesDirectory)/src
       includeRootFolder: false
       archiveFile: $(Build.ArtifactStagingDirectory)/AssemblyInfo - Extension Build - Test.zip
-  - task: PublishBuildArtifacts@1
+  - task: PublishBuildArtifacts@1 #REFACTOR: MS recommends using PublishPipelineArtifact@1
     displayName: 'Publish Extension Build'
     inputs:
       PathtoPublish: $(Build.ArtifactStagingDirectory)/AssemblyInfo - Extension Build - Test.zip
-  - task: PublishBuildArtifacts@1
+  - task: PublishBuildArtifacts@1 #REFACTOR: MS recommends using PublishPipelineArtifact@1
     displayName: 'Publish Extension'
     inputs:
       PathtoPublish: $(Build.ArtifactStagingDirectory)/packages/Assembly-Info-$(ExtensionVersion)-private.vsix
 
-# - job: Job_4
-#   displayName: Pipeline Tagging
-#   cancelTimeoutInMinutes: 1
-#   dependsOn:
-#   - Job_2
-#   - Job_3
-#   pool:
-#     vmImage: ubuntu-latest
-#   steps:
-#   - checkout: self
-#   - task: DNP-Assembly-Info-NetCore@1
-#     displayName: Set Assembly Manifest Data
-#     inputs:
-#       UpdateBuildNumber: $(Build.DefinitionName)_v$(ExtensionVersion)
-#       AddBuildTag: v$(ExtensionVersion)
+- job: Job_4
+  displayName: Pipeline Tagging
+  cancelTimeoutInMinutes: 1
+  dependsOn:
+  - Job_2
+  - Job_3
+  pool:
+    vmImage: ubuntu-latest
+  steps:
+  - checkout: self
+  - task: Assembly-Info-NetCore@1
+    displayName: Set Assembly Manifest Data
+    inputs:
+      UpdateBuildNumber: $(Build.DefinitionName)_v$(ExtensionVersion)
+      AddBuildTag: v$(ExtensionVersion)
