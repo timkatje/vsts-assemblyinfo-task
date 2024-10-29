@@ -222,18 +222,18 @@ jobs:
     inputs:
       PathtoPublish: $(Build.ArtifactStagingDirectory)/packages/Assembly-Info-$(ExtensionVersion)-private.vsix
 
-- job: Job_4
-  displayName: Pipeline Tagging
-  cancelTimeoutInMinutes: 1
-  dependsOn:
-  - Job_2
-  - Job_3
-  pool:
-    vmImage: ubuntu-latest
-  steps:
-  - checkout: self
-  - task: DNP-Assembly-Info-NetCore@1
-    displayName: Set Assembly Manifest Data
-    inputs:
-      UpdateBuildNumber: $(Build.DefinitionName)_v$(ExtensionVersion)
-      AddBuildTag: v$(ExtensionVersion)
+# - job: Job_4
+#   displayName: Pipeline Tagging
+#   cancelTimeoutInMinutes: 1
+#   dependsOn:
+#   - Job_2
+#   - Job_3
+#   pool:
+#     vmImage: ubuntu-latest
+#   steps:
+#   - checkout: self
+#   - task: DNP-Assembly-Info-NetCore@1
+#     displayName: Set Assembly Manifest Data
+#     inputs:
+#       UpdateBuildNumber: $(Build.DefinitionName)_v$(ExtensionVersion)
+#       AddBuildTag: v$(ExtensionVersion)
